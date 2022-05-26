@@ -1,20 +1,29 @@
 // Map.tsx
 import { Wrapper, Status } from "@googlemaps/react-wrapper"
+import { Coordinates } from "./App"
 import { MapComponent } from "./MapComponent"
 
-const render = (status: Status) => {
+const render = (status: Status, coordinates: Coordinates) => {
   switch (status) {
     case Status.LOADING:
       return <div>Spinner</div>
     case Status.FAILURE:
       return <div>Error component</div>
     case Status.SUCCESS:
-      // These are the coordinates of our beautiful office, in Munich
-      const center = new window.google.maps.LatLng(48.136297, 11.419739)
-      return <MapComponent center={center} zoom={14} />
+      return <MapComponent center={coordinates} zoom={14} />
   }
 }
 
-export const Map = () => {
-  return <Wrapper apiKey="API_KEY" render={render} />
+type MapProps = {
+  coordinates: Coordinates
+}
+
+export const Map = ({ coordinates }: MapProps) => {
+  return (
+    <Wrapper
+      apiKey="API_KEY"
+      render={(status) => render(status, coordinates)}
+      libraries={["places"]}
+    />
+  )
 }

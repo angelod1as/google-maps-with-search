@@ -1,11 +1,12 @@
 // MapComponent.tsx
 import { useEffect, useRef } from "react"
+import { Coordinates } from "./App"
 
 export function MapComponent({
   center,
   zoom,
 }: {
-  center: google.maps.LatLng
+  center: Coordinates
   zoom: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
