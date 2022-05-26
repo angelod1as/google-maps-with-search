@@ -3,7 +3,6 @@ import { Wrapper, Status } from "@googlemaps/react-wrapper"
 import { SetCoordinates } from "./App"
 import { SearchComponent } from "./SearchComponent"
 
-// Search.tsx
 const render = (status: Status, setCoordinates: SetCoordinates) => {
   switch (status) {
     case Status.LOADING:
