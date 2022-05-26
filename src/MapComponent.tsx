@@ -27,6 +27,13 @@ export function MapComponent({
     }
   }, [])
 
+  useEffect(() => {
+    if (map) {
+      map.setCenter(center)
+      map.setZoom(zoom)
+    }
+  }, [center, map, zoom])
+
   return (
     <div style={{ height: 300, width: "100%" }} ref={ref}>
       {map && <Marker coordinates={center} map={map} />}
