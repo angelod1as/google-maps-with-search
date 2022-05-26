@@ -10,6 +10,9 @@ type MarkerProps = {
 export const Marker = ({ map, coordinates }: MarkerProps) => {
   const [marker, setMarker] = useState<google.maps.Marker>()
 
+  // We do this to get lat and lng in the correct format from Google API
+  const { lat, lng } = new google.maps.LatLng(coordinates)
+
   // Creates an empty Marker when component mounts
   useEffect(() => {
     if (!marker) {
@@ -20,17 +23,17 @@ export const Marker = ({ map, coordinates }: MarkerProps) => {
   useEffect(() => {
     if (marker) {
       // remove the marker if the coordinates doesn't exist
-      if (!coordinates?.lat && !coordinates?.lng) {
+      if (!lat && !lng) {
         return marker.setMap(null)
       }
 
       // Updates the marker
       marker.setOptions({
         map,
-        position: coordinates,
+        position: { lat: lat(), lng: lng() },
       })
     }
-  }, [coordinates?.lat, coordinates?.lng])
+  }, [lat, lng, map, marker])
 
   // The component returns null as google.maps.Map manages the DOM manipulation.
   return null
