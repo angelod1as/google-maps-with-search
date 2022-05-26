@@ -19,5 +19,5 @@ export function MapComponent({
     }
   }, [])
 
-  return <div ref={ref} />
+  return <div style={{ height: 300, width: "100%" }} ref={ref} />
 }
