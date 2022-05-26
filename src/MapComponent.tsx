@@ -1,6 +1,7 @@
 // MapComponent.tsx
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Coordinates } from "./App"
+import { Marker } from "./Marker"
 
 export function MapComponent({
   center,
@@ -9,11 +10,12 @@ export function MapComponent({
   center: Coordinates
   zoom: number
 }) {
+  const [map, setMap] = useState<google.maps.Map | null>(null)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (ref.current) {
-      new window.google.maps.Map(ref.current, {
+      const newMap = new window.google.maps.Map(ref.current, {
         center,
         zoom,
         fullscreenControl: false,
@@ -21,8 +23,13 @@ export function MapComponent({
         panControl: false,
         streetViewControl: false,
       })
+      setMap(newMap)
     }
   }, [])
 
-  return <div style={{ height: 300, width: "100%" }} ref={ref} />
+  return (
+    <div style={{ height: 300, width: "100%" }} ref={ref}>
+      {map && <Marker coordinates={center} map={map} />}
+    </div>
+  )
 }
