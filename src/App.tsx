@@ -1,5 +1,6 @@
 // App.tsx
-import { Map } from "./Map";
+import { Map } from "./Map"
+import { Search } from "./Search"
 
 export const App = () => (
   <div style={{ padding: 10 }}>
@@ -7,8 +8,9 @@ export const App = () => (
       My Super Map
     </h1>
 
+    <Search />
     <Map />
 
     <p style={{ marginTop: 20 }}>Done with 💙</p>
   </div>
-);
+)
