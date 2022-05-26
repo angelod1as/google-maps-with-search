@@ -8,6 +8,7 @@ export function SearchComponent() {
     if (ref.current) {
       new window.google.maps.places.Autocomplete(ref.current, {
         types: ["geocode"],
+        componentRestrictions: { country: "de" },
       })
     }
   }, [])
