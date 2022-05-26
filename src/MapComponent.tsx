@@ -15,6 +15,10 @@ export function MapComponent({
       new window.google.maps.Map(ref.current, {
         center,
         zoom,
+        fullscreenControl: false,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
       })
     }
   }, [])
